@@ -5,7 +5,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tachiiri-org/worksheet-generator-spec.git"
+    "url": "git+https://github.com/tachiiri-org/worksheet-generator-spec.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
