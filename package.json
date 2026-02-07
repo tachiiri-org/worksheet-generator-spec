@@ -1,0 +1,39 @@
+{
+  "name": "@tachiiri-library/worksheet-generator-spec",
+  "version": "0.1.0",
+  "description": "Tool specifications derived from constitutional specifications. Defines support workflow tool specifications based on @tachiiri-library/specifications.",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "specifications",
+    "workflow",
+    "tool-spec",
+    "constitutional-spec",
+    "tachiiri-library"
+  ],
+  "author": "tachiiri",
+  "license": "ISC",
+  "files": [
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./spec/*": {
+      "default": "./spec/*"
+    },
+    "./schema/*": {
+      "default": "./schema/*"
+    },
+    "./intent/*": {
+      "default": "./intent/*"
+    }
+  },
+  "dependencies": {
+    "@tachiiri-library/specifications": "^0.1.11"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
