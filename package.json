@@ -3,6 +3,10 @@
   "version": "0.1.1",
   "description": "Tool specifications derived from constitutional specifications. Defines support workflow tool specifications based on @tachiiri-library/specifications.",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tachiiri-org/worksheet-generator-spec.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
