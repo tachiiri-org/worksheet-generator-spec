@@ -1,6 +1,6 @@
 {
   "name": "@tachiiri-library/worksheet-generator-spec",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Tool specifications derived from constitutional specifications. Defines support workflow tool specifications based on @tachiiri-library/specifications.",
   "type": "module",
   "repository": {
