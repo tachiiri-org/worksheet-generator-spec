@@ -1,0 +1,60 @@
+classDiagram
+
+%% ===== 集約 =====
+
+class 問題 {
+  <<AggregateRoot>>
+}
+
+class 教材案 {
+  <<AggregateRoot>>
+}
+
+class 設計図 {
+  <<AggregateRoot>>
+}
+
+class レイアウト {
+  <<AggregateRoot>>
+}
+
+class 素材 {
+  <<AggregateRoot>>
+}
+
+class プリント {
+  <<AggregateRoot>>
+}
+
+class 配布 {
+  <<AggregateRoot>>
+}
+
+class 学習基準 {
+  <<AggregateRoot>>
+}
+
+class 到達目標 {
+  <<AggregateRoot>>
+}
+
+class 権利 {
+  <<AggregateRoot>>
+}
+
+%% ===== 依存方向（許容のみ） =====
+
+教材案 --> 問題
+教材案 --> レイアウト
+
+問題 --> 権利
+問題 --> 到達目標
+
+学習基準 --> 到達目標
+
+レイアウト --> 設計図
+
+プリント --> 教材案 : 追跡
+プリント --> 素材 : 固定参照
+
+配布 --> プリント

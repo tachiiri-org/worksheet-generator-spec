@@ -1,0 +1,238 @@
+[
+  {
+    "en": "problem",
+    "ja": "問題"
+  },
+  {
+    "en": "problem_prompt",
+    "ja": "出題"
+  },
+  {
+    "en": "reference_answer",
+    "ja": "解答"
+  },
+  {
+    "en": "solution",
+    "ja": "解説"
+  },
+  {
+    "en": "element",
+    "ja": "構成要素"
+  },
+  {
+    "en": "text_element",
+    "ja": "テキスト要素"
+  },
+  {
+    "en": "image_element",
+    "ja": "画像要素"
+  },
+  {
+    "en": "image_uploaded_element",
+    "ja": "画像要素（アップロード）"
+  },
+  {
+    "en": "image_generated_element",
+    "ja": "画像要素（生成）"
+  },
+  {
+    "en": "p5_script",
+    "ja": "P5スクリプト"
+  },
+  {
+    "en": "worksheet",
+    "ja": "教材"
+  },
+  {
+    "en": "unit",
+    "ja": "単元"
+  },
+  {
+    "en": "layout",
+    "ja": "レイアウト"
+  },
+  {
+    "en": "place_holder",
+    "ja": "配置枠"
+  },
+  {
+    "en": "layout_decoration",
+    "ja": "装飾"
+  },
+  {
+    "en": "gridarea",
+    "ja": "方眼紙"
+  },
+  {
+    "en": "coordinate",
+    "ja": "座標"
+  },
+  {
+    "en": "page_margin",
+    "ja": "余白"
+  },
+  {
+    "en": "content_type",
+    "ja": "表示形式"
+  },
+  {
+    "en": "text",
+    "ja": "テキスト"
+  },
+  {
+    "en": "image_uploaded",
+    "ja": "画像（アップロード）"
+  },
+  {
+    "en": "image_generated",
+    "ja": "画像（生成）"
+  },
+  {
+    "en": "qr_placeholder",
+    "ja": "QR差込枠"
+  },
+  {
+    "en": "logo_placeholder",
+    "ja": "ロゴ差込枠"
+  },
+  {
+    "en": "paper_dimension",
+    "ja": "用紙サイズ"
+  },
+  {
+    "en": "paper_spec",
+    "ja": "用紙規格"
+  },
+  {
+    "en": "layout_template",
+    "ja": "教材テンプレート"
+  },
+  {
+    "en": "font_spec",
+    "ja": "フォント仕様"
+  },
+  {
+    "en": "workspace_defaults",
+    "ja": "環境設定"
+  },
+  {
+    "en": "content_meta",
+    "ja": "教材情報"
+  },
+  {
+    "en": "rights",
+    "ja": "権利情報"
+  },
+  {
+    "en": "source_type",
+    "ja": "作成区分"
+  },
+  {
+    "en": "learning_standard",
+    "ja": "学習基準"
+  },
+  {
+    "en": "strand",
+    "ja": "分野"
+  },
+  {
+    "en": "standard_statement",
+    "ja": "到達目標"
+  },
+  {
+    "en": "subject",
+    "ja": "教科"
+  },
+  {
+    "en": "issuer",
+    "ja": "制定主体"
+  },
+  {
+    "en": "issuertype",
+    "ja": "制定主体種別"
+  },
+  {
+    "en": "scope",
+    "ja": "用途"
+  },
+  {
+    "en": "scope_type",
+    "ja": "用途区分"
+  },
+  {
+    "en": "domain_scope",
+    "ja": "ドメイン定義"
+  },
+  {
+    "en": "curriculum_id",
+    "ja": "カリキュラムID"
+  },
+  {
+    "en": "published_worksheet",
+    "ja": "公開教材"
+  },
+  {
+    "en": "published_problem_snapshot",
+    "ja": "公開問題スナップショット"
+  },
+  {
+    "en": "uploaded_image_ref",
+    "ja": "画像参照"
+  },
+  {
+    "en": "access_key",
+    "ja": "アクセスキー"
+  },
+  {
+    "en": "deprecated",
+    "ja": "非推奨"
+  },
+  {
+    "en": "view",
+    "ja": "表示"
+  },
+  {
+    "en": "question",
+    "ja": "問題"
+  },
+  {
+    "en": "answer",
+    "ja": "解答"
+  },
+  {
+    "en": "created_at",
+    "ja": "作成日時"
+  },
+  {
+    "en": "frozen",
+    "ja": "固定"
+  },
+  {
+    "en": "snapshot",
+    "ja": "スナップショット"
+  },
+  {
+    "en": "target",
+    "ja": "参照対象"
+  },
+  {
+    "en": "generator_type",
+    "ja": "生成方式"
+  },
+  {
+    "en": "override",
+    "ja": "上書き"
+  },
+  {
+    "en": "width_mm",
+    "ja": "横幅"
+  },
+  {
+    "en": "height_mm",
+    "ja": "縦幅"
+  },
+  {
+    "en": "mime_type",
+    "ja": "MIME種別"
+  }
+]

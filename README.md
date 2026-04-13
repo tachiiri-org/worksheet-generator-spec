@@ -1,186 +1,187 @@
-# support-workflow-spec
+# worksheet-generator-spec
 
-## Overview
+## 概要
 
-This repository defines **tool specifications derived from a constitutional specification**.
-The constitution is provided by `@tachiiri-library/specifications` and serves as the **non-negotiable upper-layer norm**.
+このリポジトリは、教材生成システムの **L1ドメイン仕様**を定義する。
 
-This project is not an implementation repository.
+ここで扱うのは実装ではなく、
 
-- **AI generates tool specifications**
-- **Humans provide intent, direction, and judgment**
-- **JSON is the contract**
-- **Lint enforces constitutional and operational compliance**
-- **Implementation is generated later from validated JSON**
+- 概念の境界
+- 集約の責務
+- 参照方向
+- 不変条件
+- 集約間契約
 
-The goal is to establish a **one-way, auditable pipeline**:
+である。
 
-```
-Constitution
-   ↓
-Intent (human)
-   ↓
-Specification JSON (AI-generated, linted)
-   ↓
-Tool Implementation (AI-generated)
-```
+本仕様は、大規模SaaSを前提とし、
+境界が将来的に分離可能な構造として設計されている。
 
 ---
 
-## Design Principles
+## 本リポジトリの立ち位置
 
-### 1. Constitution-first
+| レイヤ | 内容                                 |
+| ------ | ------------------------------------ |
+| L0     | 憲法的仕様（境界・保証・非機能原則） |
+| L1     | ドメイン意味論（本リポジトリ）       |
+| L2     | 具体値・設定                         |
+| L3     | 実装                                 |
 
-All tool specifications **must conform** to the constitutional specifications located in:
-
-```
-node_modules/@tachiiri-library/specifications/specs/
-```
-
-In particular:
-
-- `00_constitution/` defines invariant rules
-- `20_operational_semantics/` defines runtime and operational guarantees
-- `30_interaction_edges/` defines system boundaries
-- `40_service_operations_governance/` defines service governance
-
-No tool may override or contradict these specs.
-Deviation is only allowed if explicitly supported by the constitution (e.g. controlled overrides, break-glass).
+L1は実装方法を定義しない。
+代わりに **正しい構造と依存の方向** を固定する。
 
 ---
 
-### 2. Clear separation of responsibility
+## 設計原則
 
-| Layer          | Owner   | Purpose                                   |
-| -------------- | ------- | ----------------------------------------- |
-| Intent         | Human   | Why the tool exists, boundaries, judgment |
-| Spec JSON      | AI      | Concrete, machine-consumable definition   |
-| Lint           | Machine | Enforce constitution & consistency        |
-| Implementation | AI      | Deterministic output from spec            |
+### 1. 境界ごとに集約ルートを持つ
 
-Humans **do not** edit implementation.
-AI **does not** invent intent.
+各ドメイン境界は以下を持つ。
+
+- 1つの集約ルート
+- 境界内の整合性責務
+- 境界外への明示的参照
 
 ---
 
-### 3. Specification unit
+### 2. 依存は一方向・循環禁止
 
-Each tool specification is composed of **four fixed domains**:
-
-1. **Identity**
-   - Tool identity, versioning, lifecycle, tenant scope
-
-2. **Interface**
-   - Inputs, outputs, events, jobs, interaction edges
-
-3. **Policy**
-   - AuthN/AuthZ, delegation, exceptions, auditability
-
-4. **Operations**
-   - Observability, limits, idempotency, DR, retention, rollout
-
-This structure mirrors the constitution and enables predictable linting and code generation.
+- 集約は他境界の内部構造を保持しない
+- 型として直接依存しない
+- 接続は ID参照 または スナップショット
 
 ---
 
-## Repository Structure (Planned)
+### 3. 並列関係は第三の境界で合流
 
-This repository is organized to make **intent and certainty explicit to AI**.
+Content と Layout のような対等関係は直接依存させない。
 
-```
-support-workflow-spec/
-├─ intent/
-│  └─ <tool-id>/
-│     ├─ purpose.md
-│     ├─ non_goals.md
-│     ├─ actors.md
-│     ├─ automation_boundary.md
-│     ├─ exceptions.md
-│     └─ governance.md
-│
-├─ spec/
-│  └─ <tool-id>.json
-│
-├─ schema/
-│  └─ tool-spec.schema.json
-│
-├─ lint/
-│  ├─ constitutional/
-│  ├─ operational/
-│  └─ index.ts
-│
-├─ dist/
-│  └─ generated/
-│
-└─ README.md
-```
+例：
 
-### intent/
+- 問題（Content）
+- レイアウト（Structure）
 
-- Written and reviewed by humans
-- Expresses **intent, constraints, and decisions**
-- References constitutional concepts explicitly
-- Serves as the **only source of truth for judgment**
+は
 
-### spec/
+- プリント（Fixed snapshot）
 
-- Generated primarily by AI
-- Contains **only decided values**
-- Must be fully lintable
-- No prose, no ambiguity
-
-### schema/
-
-- Defines structural validity
-- Enables early failure for incomplete specs
-
-### lint/
-
-- Enforces:
-  - Constitutional compliance
-  - Cross-field consistency
-  - Operational safety guarantees
-
-- Lint failure means **the tool cannot exist**
-
-### dist/
-
-- Output artifacts
-- Published via npm
-- Consumed by downstream implementation generators
+で合流する。
 
 ---
 
-## How AI Should Work With This Repository
+### 4. 集約単位でディレクトリを分ける
 
-1. **Read the constitution first**
-2. **Read intent documents for a tool**
-3. **Generate spec JSON**
-4. **Run lint mentally**
-5. **Adjust until lint would pass**
-6. **Never invent policy not grounded in intent or constitution**
-
-If intent is missing, the correct response is **to ask for clarification**, not to assume.
+`用語定義/` は集約単位で構成される。
+フォルダ名は将来的に分離可能な境界単位を意味する。
 
 ---
 
-## What This Repository Is NOT
+### 5. タグ付きユニオンで排他型を定義する
 
-- Not an implementation repository
-- Not a playground for experimentation
-- Not tolerant of partial or contradictory specs
-- Not human-friendly prose-first documentation
+複数の型のどれか一つを持つ構造では、
 
-This repository treats **specifications as infrastructure**.
+- 親は個別型のプロパティを持たない
+- kind によるタグ付きユニオンで定義する
+
+mmdでは中間抽象型に kind を持たせる。
+
+## 集約間関係
+
+依存方向は `クラス図/集約ルート.mmd` に定義される。
+
+基本方針:
+
+- 循環依存は禁止
+- 逆方向参照は禁止
+- プリントは設計図を参照しない
+- レイアウトは素材を直接参照しない
+- 素材参照はプリントで固定される
 
 ---
 
-## First Milestone
+## 契約
 
-The initial goal is to establish:
+`契約/` ディレクトリには、
 
-- One complete tool spec (intent + JSON)
-- One constitutional lint rule
-- One successful end-to-end validation
+- 集約間依存の形式
+- 実体化の規則
+- 不変条件の引き継ぎ
 
-Once this loop is stable, scale is trivial.
+を定義する。
+
+契約は構造保証であり、
+型依存よりも優先される。
+
+---
+
+## 不変性の階層
+
+### 1. レイアウト段階
+
+- 未解決（スロットあり）
+- 設計図参照あり
+
+### 2. プリント段階
+
+- 解決済み
+- 設計図参照なし
+- スロットなし
+- 素材参照（ID + hash）
+
+### 3. 配布段階
+
+- 運用要素付加
+- プリント内容不変
+
+---
+
+## クラス図の扱い
+
+- 集約内図：境界内のみ
+- 集約間図：依存方向のみ
+
+境界を越える内部構造は図に含めない。
+
+---
+
+## 本仕様の目的
+
+目的はツールを作ることではない。
+
+目的は、
+
+- 構造が壊れないこと
+- 境界が崩れないこと
+- 将来的に分離可能であること
+- AI実装において揺れないこと
+
+である。
+
+---
+
+## AIへの前提
+
+AIは以下を守る。
+
+1. 境界を越えて内部構造を混ぜない
+2. 参照はIDまたはスナップショット
+3. 循環依存を生成しない
+4. 不変条件を破らない
+
+---
+
+## 結論
+
+このリポジトリは
+
+- 境界
+- 集約
+- 依存方向
+- 契約
+- 不変条件
+
+を固定するための設計資産である。
+
+実装は後から生成可能であるが、
+境界が曖昧な状態で生成してはならない。
